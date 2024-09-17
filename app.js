@@ -3,18 +3,14 @@ import bcrypt from 'bcrypt'
 
 const app = express();
 const port = 3000;
-
-//* in memory
-const users = [];
+const users = []; //* in memory
 
 app.use(express.json());
-
 
 app.post('/register', async (req, res) => {
     try {
         const { email, password } = req.body;
         const findUser = users.find((data) => email === data.email);
-
         if (findUser) {
             res.status(400).json({
                 message: 'Wrong username or password'
